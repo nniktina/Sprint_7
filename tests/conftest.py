@@ -32,6 +32,13 @@ def courier_data_without_password():
                  }
     return user_data
 
+@pytest.fixture
+def login_data_nonexistent_courier():
+    fake = Faker(locale="ru_RU")
+    user_data = {"login": fake.lexify('????????'),
+                 "password": fake.lexify('???????')
+                 }
+    return user_data
 
 @pytest.fixture
 def register_new_courier_and_return_login_password():
@@ -60,3 +67,27 @@ def register_new_courier_and_return_login_password():
         login_pass.append(first_name)
 
     return login_pass
+
+
+@pytest.fixture
+def data_for_login(register_new_courier_and_return_login_password):
+    registered_courier = register_new_courier_and_return_login_password
+    login_data = {"login": registered_courier[0],
+                  "password": registered_courier[1]}
+    return login_data
+
+
+@pytest.fixture
+def data_for_login_without_login(register_new_courier_and_return_login_password):
+    registered_courier = register_new_courier_and_return_login_password
+    login_data = {"login": "",
+                  "password": registered_courier[1]}
+    return login_data
+
+
+@pytest.fixture
+def data_for_login_without_password(register_new_courier_and_return_login_password):
+    registered_courier = register_new_courier_and_return_login_password
+    login_data = {"login": registered_courier[0],
+                  "password": ""}
+    return login_data
