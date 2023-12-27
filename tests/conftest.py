@@ -32,6 +32,7 @@ def courier_data_without_password():
                  }
     return user_data
 
+
 @pytest.fixture
 def login_data_nonexistent_courier():
     fake = Faker(locale="ru_RU")
@@ -39,6 +40,7 @@ def login_data_nonexistent_courier():
                  "password": fake.lexify('???????')
                  }
     return user_data
+
 
 @pytest.fixture
 def register_new_courier_and_return_login_password():

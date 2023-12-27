@@ -11,3 +11,8 @@ class ApiClient:
         response_raw = requests.post(url=self.base_url+path, data=payload)
         return response_raw
 
+
+    def get(self, path):
+        response_raw = requests.get(url=self.base_url+path)
+        return response_raw
+
