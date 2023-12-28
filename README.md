@@ -21,12 +21,12 @@ test_login_courier.py
         1) test_login_courier_success:
             * курьер может авторизоваться;
             * успешный запрос возвращает id
-        2) test_login_without_mandatory_field:
+        2) test_login_without_login_error, test_login_without_password_error:
             * для авторизации нужно передать все обязательные поля;
             * если какого-то поля нет, запрос возвращает ошибку;
         3) test_login_nonexistent_courier_error:
             * если авторизоваться под несуществующим пользователем, запрос возвращает ошибку;
-        4) test_login_with_incorrect_data:
+        4) test_login_with_incorrect_login, test_login_with_incorrect_password:
             * система вернёт ошибку, если неправильно указать логин или пароль;
 
 test_order_create_and_list.py
