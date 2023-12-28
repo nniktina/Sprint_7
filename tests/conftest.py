@@ -8,9 +8,9 @@ from faker import Faker
 @pytest.fixture
 def new_courier_data():
     fake = Faker(locale="ru_RU")
-    user_data = {"login": fake.lexify('???????'),
-                 "password": fake.lexify('???????'),
-                 "firstName": fake.lexify('???????')
+    user_data = {"login": fake.user_name(),
+                 "password": fake.password(),
+                 "firstName": fake.first_name()
                  }
     return user_data
 
@@ -18,8 +18,8 @@ def new_courier_data():
 @pytest.fixture
 def courier_data_without_login():
     fake = Faker(locale="ru_RU")
-    user_data = {"password": fake.lexify('???????'),
-                 "firstName": fake.lexify('???????')
+    user_data = {"password": fake.password(),
+                 "firstName": fake.first_name()
                  }
     return user_data
 
@@ -27,8 +27,8 @@ def courier_data_without_login():
 @pytest.fixture
 def courier_data_without_password():
     fake = Faker(locale="ru_RU")
-    user_data = {"login": fake.lexify('???????'),
-                 "firstName": fake.lexify('???????')
+    user_data = {"login": fake.user_name(),
+                 "firstName": fake.first_name()
                  }
     return user_data
 
@@ -36,8 +36,8 @@ def courier_data_without_password():
 @pytest.fixture
 def login_data_nonexistent_courier():
     fake = Faker(locale="ru_RU")
-    user_data = {"login": fake.lexify('????????'),
-                 "password": fake.lexify('???????')
+    user_data = {"login": fake.user_name,
+                 "password": fake.password
                  }
     return user_data
 
@@ -78,18 +78,3 @@ def data_for_login(register_new_courier_and_return_login_password):
                   "password": registered_courier[1]}
     return login_data
 
-
-@pytest.fixture
-def data_for_login_without_login(register_new_courier_and_return_login_password):
-    registered_courier = register_new_courier_and_return_login_password
-    login_data = {"login": "",
-                  "password": registered_courier[1]}
-    return login_data
-
-
-@pytest.fixture
-def data_for_login_without_password(register_new_courier_and_return_login_password):
-    registered_courier = register_new_courier_and_return_login_password
-    login_data = {"login": registered_courier[0],
-                  "password": ""}
-    return login_data
