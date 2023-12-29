@@ -30,8 +30,8 @@ class TestCreateCourier:
     @allure.description(
         'Проверяем что поля логина и пароля обязательны для заоплнения, а также проверка кода и текста ошибки')
     @pytest.mark.parametrize('wrong_data', ['courier_data_without_login', 'courier_data_without_password'])
-    def test_mandatory_fields_are_missing(self, wrong_data):
+    def test_mandatory_fields_are_missing(self, wrong_data, request):
         api = ApiClient()
-        response = api.post(Pathes.create_courier_path, wrong_data)
+        response = api.post(Pathes.create_courier_path, request.getfixturevalue(wrong_data))
         assert response.status_code == 400
         assert response.text == ResponseTexts.not_enough_data_error
